@@ -1,26 +1,57 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <router-view></router-view>
+  <!-- <router-view v-slot="{ Component }">
+    <transition
+      :enter-active-class="`animate__animated animate__${$route.meta.enterTransition}`"
+      leave-active-class="animate__animated animate__fadeOut"
+      mode="out-in"
+    >
+      <component :is="Component" :key="$route.path"></component>
+    </transition>
+  </router-view> -->
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  name: "App",
+  computed: {
+    token() {
+      return this.$store.getters.token;
+    },
+  },
+  created() {
+    this.$store.dispatch("autoSignin");
+  },
+  watch: {
+    token: {
+      handler() {
+        if (this.token) {
+          this.$store.dispatch("fetchProducts");
+        }
+      },
+      immediate: true,
+    },
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
+@import "~animate.css/animate.min.css";
+
+.bg-vue {
+  background-color: rgb(52, 73, 94);
+  color: white;
+}
+.bg-vue2 {
+  background-color: rgb(65, 184, 131);
+  color: white;
+}
+.text-vue {
+  color: rgb(52, 73, 94);
+}
+.text-vue2 {
+  color: rgb(65, 184, 131);
 }
 </style>
