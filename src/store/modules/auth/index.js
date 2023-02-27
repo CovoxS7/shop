@@ -17,10 +17,10 @@ const actions = {
     let url = "";
     if (payload.mode === "signin") {
       url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAD3kRAUFs6OijNNtK1F-78zZ6HME6EJzM";
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=";
     } else if (payload.mode === "signup") {
       url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAD3kRAUFs6OijNNtK1F-78zZ6HME6EJzM";
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=";
     } else {
       return;
     }
